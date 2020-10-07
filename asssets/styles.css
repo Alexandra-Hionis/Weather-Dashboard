@@ -15,8 +15,17 @@
     background-color: #A4A5A0;
 }
 
+.col {
+    border: black 2px solid;
+}
 
-
+.box {
+    padding: 0 5px 0 5px;
+    margin: 5px;
+}
+.box .inner {
+    background-color: #fff;
+}
 
 /* .btn-info {
     color: #A9E6E1;
