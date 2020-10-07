@@ -1,6 +1,8 @@
 
 var res;
-
+var forecastRes
+//start with empty array
+ 
 
 // let cityDate = moment().format('LLL');
 
@@ -20,46 +22,82 @@ function searchWeatherByCity() {
         method: "GET"
     })
     .then(function(response) {
-        res = response;
-    
+        console.log(response);
+        res = response;  
+        setCurrent();
+    })
     $.ajax({
         url: fiveDayForecastURL,
         method: "GET"
     })
     
     .then(function(response) {
-        res = response;
+        console.log(response);
+        forecastRes = response;
+        setForecast();
     })
-        
-        // Display name, temp and humidity
-        document.getElementById("nameOfCity").innerText = res.name
-        document.getElementById("temp").innerText = res.main.temp
-        document.getElementById("humidity").innerText = res.main.humidity
-        document.getElementById("humidity").innerText = document.getElementById("humidity").innerText + res.main.humidity
-        document.getElementById("windSpeed").innerText = res.wind.speed
 
-
-        document.getElementById("dayOneDate").innerText = res.list[1].dt_txt
-        document.getElementById("dayOneTemp").innerText = res.list[1].main.temp
-    })
-    searchedCities();
+    addCityToStorage(searchTerm.value);
+    setSearches();
 }
 // Previously Searched Cities Saved to Local Storage //
 function searchedCities() {
-    let searchedCities = JSON.parse(localStorage.getItem("searchedCitiesContainer"));
     if (searchedCities !== null) {
     cities = searchedCities;
     }
+}
+
+function addCityToStorage(city) {
+    var savedSearch = localStorage.getItem("savedSearch")
+    if (!savedSearch) {
+        savedSearch = {
+        savedCities: []
+      };
+    } else {
+      savedSearch = JSON.parse(savedSearch)
+    }
+    savedSearch.savedCities.push(city);
+    savedSearch = JSON.stringify(savedSearch);
+    localStorage.setItem("savedSearch", savedSearch);
+  }
+
+  function setSearches(){
+    let savedSearch = JSON.parse(localStorage.getItem("savedSearch"));
+    var container = document.getElementById("searchedCitiesContainer");
+  
+    savedSearch.savedCities.forEach(city => {
+      var paragraphElement = document.createElement("P");
+      paragraphElement.innerText = city;
+      container.appendChild(paragraphElement)
+    });
+  }
+
+function setCurrent () {
+    // Display name, temp and humidity
+    document.getElementById("nameOfCity").innerText = res.name
+    document.getElementById("temp").innerText = res.main.temp
+    document.getElementById("humidity").innerText = res.main.humidity
+    document.getElementById("humidity").innerText = document.getElementById("humidity").innerText + res.main.humidity
+    document.getElementById("windSpeed").innerText = res.wind.speed
 }
 function storeCities() {
     localStorage.setItem("searchedCitiesContainer", JSON.stringify(cities));
 }
 
-// function fiveDay() {
-//     // Display name, temp and humidity
-//     document.getElementById("dayOneDate").innerText = res.list[1].dt_txt
-//     document.getElementById("temp").innerText = res.main.temp
-//     document.getElementById("humidity").innerText = res.main.humidity
-//     document.getElementById("humidity").innerText = document.getElementById("humidity").innerText + res.main.humidity
-//     document.getElementById("windSpeed").innerText = res.wind.speed
-// }
+// For loop to loop through forecast array ?
+function setForecast() {
+
+    for (let i = 1; i < 3; i++) {
+      
+        var currentDay = forecastRes.list[i];
+  
+        document.getElementById("day" + i).innerText = currentDay.dt_txt
+        document.getElementById("temp" + i).innerText = currentDay.main.temp
+        document.getElementById("icon" + i).src = getIcon(currentDay.weather[0].icon);
+    }
+  
+  } 
+
+function getIcon(iconName){
+    return `https://openweathermap.org/img/wn/${iconName}@2x.png`
+}

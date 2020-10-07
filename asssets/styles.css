@@ -1,3 +1,6 @@
+body {
+    margin: 10px;
+}
 .searchDiv {
     margin-bottom: 4px;
 }
@@ -12,20 +15,20 @@
 }
 
 .side-div {
-    background-color: #A4A5A0;
+    
 }
 
 .col {
     border: black 2px solid;
 }
 
-.box {
-    padding: 0 5px 0 5px;
-    margin: 5px;
-}
-.box .inner {
-    background-color: #fff;
-}
+.card-columns {
+    @include media-breakpoint-only(lg) {
+      column-count: 4;
+    }
+    @include media-breakpoint-only(xl) {
+      column-count: 5;
+    }
 
 /* .btn-info {
     color: #A9E6E1;
