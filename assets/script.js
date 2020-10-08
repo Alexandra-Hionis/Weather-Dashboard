@@ -79,7 +79,7 @@ function addCityToStorage(city) {
 function setCurrent () {
     // Display name, temp and humidity
     document.getElementById("nameOfCity").innerText = res.name
-    document.getElementById("currentIcon").src = getCurentIcon(res.weather.icon );
+    document.getElementById("currentIcon").src = getCurentIcon(res.weather[0].icon);
     document.getElementById("temp").innerText = res.main.temp + "\xB0 F"
     document.getElementById("humidity").innerText = res.main.humidity + " %"
     document.getElementById("windSpeed").innerText = res.wind.speed + " mph"
