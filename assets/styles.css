@@ -1,6 +1,11 @@
 body {
     margin: 10px;
 }
+
+
+.side-div {
+    background-color: lightgray;
+}
 .current-weather {
     background-color: white;
 }
@@ -42,9 +47,5 @@ a:hover {
     text-decoration: none;
   }
 
-/* .btn-info {
-    color: #A9E6E1;
-    #94C2E4;
-    #F5B8A5;
-} */
+
 

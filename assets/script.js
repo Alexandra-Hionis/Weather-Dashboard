@@ -4,9 +4,14 @@ var forecastRes
 
 document.getElementById("search").addEventListener("click", searchWeatherByCity);
 
+fiveDayCard.style.display = "none";
+
+
 function searchWeatherByCity() {
     var searchTerm = document.getElementById("searchTerm");
     
+    fiveDayCard.style.display = "block";
+
     // URL we need to quuery the database
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm.value}&appid=${APIKey}&units=imperial`;
 
@@ -36,6 +41,7 @@ function searchWeatherByCity() {
     addCityToStorage(searchTerm.value);
     setSearches();
     displayDate();
+    
 }
 
 let currentDate = moment().format('dddd, MMMM Do YYYY');
@@ -78,11 +84,11 @@ function addCityToStorage(city) {
 
 function setCurrent () {
     // Display name, temp and humidity
-    document.getElementById("nameOfCity").innerText = res.name
+    document.getElementById("nameOfCity").innerText = res.name;
     document.getElementById("currentIcon").src = getCurentIcon(res.weather[0].icon);
-    document.getElementById("temp").innerText = res.main.temp + "\xB0 F"
-    document.getElementById("humidity").innerText = res.main.humidity + " %"
-    document.getElementById("windSpeed").innerText = res.wind.speed + " mph"
+    document.getElementById("temp").innerText = res.main.temp + "\xB0 F";
+    document.getElementById("humidity").innerText = res.main.humidity + " %";
+    document.getElementById("windSpeed").innerText = res.wind.speed + " mph";
 }
 function storeCities() {
     localStorage.setItem("searchedCitiesContainer", JSON.stringify(cities));
@@ -98,9 +104,12 @@ function setForecast() {
       
         var currentDay = forecastRes.list[i];
   
-        document.getElementById("day" + i).innerText = currentDay.dt_txt
-        document.getElementById("temp" + i).innerText = currentDay.main.temp + "\xB0 F"
+        document.getElementById("day" + i).innerText = currentDay.dt_txt;
+        document.getElementById("temp" + i).innerText = currentDay.main.temp + "\xB0 F";
+        document.getElementById("hum" + i).innerText = currentDay.main.humidity + " %";
         document.getElementById("icon" + i).src = getIcon(currentDay.weather[0].icon);
+        
+        
     }
   
   } 
