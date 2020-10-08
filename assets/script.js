@@ -1,16 +1,12 @@
 
 var res;
 var forecastRes
-//start with empty array
- 
-
-// let cityDate = moment().format('LLL');
-
 
 document.getElementById("search").addEventListener("click", searchWeatherByCity);
 
 function searchWeatherByCity() {
     var searchTerm = document.getElementById("searchTerm");
+    
     // URL we need to quuery the database
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm.value}&appid=${APIKey}&units=imperial`;
 
@@ -39,7 +35,15 @@ function searchWeatherByCity() {
 
     addCityToStorage(searchTerm.value);
     setSearches();
+    displayDate();
 }
+
+let currentDate = moment().format('dddd, MMMM Do YYYY');
+
+function displayDate() {
+  $("#currentDay").text(currentDate);
+}
+
 // Previously Searched Cities Saved to Local Storage //
 function searchedCities() {
     if (searchedCities !== null) {
@@ -75,24 +79,26 @@ function addCityToStorage(city) {
 function setCurrent () {
     // Display name, temp and humidity
     document.getElementById("nameOfCity").innerText = res.name
-    document.getElementById("temp").innerText = res.main.temp
-    document.getElementById("humidity").innerText = res.main.humidity
-    document.getElementById("humidity").innerText = document.getElementById("humidity").innerText + res.main.humidity
-    document.getElementById("windSpeed").innerText = res.wind.speed
+    document.getElementById("temp").innerText = res.main.temp + "\xB0 F"
+    var humidity = document.getElementById("humidity").innerText = res.main.humidity + " %"
+    document.getElementById("windSpeed").innerText = res.wind.speed + " mph"
 }
 function storeCities() {
     localStorage.setItem("searchedCitiesContainer", JSON.stringify(cities));
 }
 
+function addToSavedSearch() {
+
+}
 // For loop to loop through forecast array ?
 function setForecast() {
 
-    for (let i = 1; i < 3; i++) {
+    for (let i = 1; i < 6; i++) {
       
         var currentDay = forecastRes.list[i];
   
         document.getElementById("day" + i).innerText = currentDay.dt_txt
-        document.getElementById("temp" + i).innerText = currentDay.main.temp
+        document.getElementById("temp" + i).innerText = currentDay.main.temp + "\xB0 F"
         document.getElementById("icon" + i).src = getIcon(currentDay.weather[0].icon);
     }
   
@@ -101,3 +107,6 @@ function setForecast() {
 function getIcon(iconName){
     return `https://openweathermap.org/img/wn/${iconName}@2x.png`
 }
+
+
+

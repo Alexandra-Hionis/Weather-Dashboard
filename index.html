@@ -14,7 +14,7 @@
         integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 
     <!-- Styles CSS -->
-    <link rel="stylesheet" href="asssets/styles.css">
+    <link rel="stylesheet" href="assets/styles.css">
 
     <title>Weather Dashboard</title>
 </head>
@@ -45,7 +45,9 @@
     
         <div class="current-weather col-9 pt-3">
             <div class="bg-light p-3">
-                    <h2 class="justify-content-center" id="nameOfCity"></h2><br> 
+                    <h2 class="justify-content-center" id="nameOfCity"></h2>
+                    <div id="currentDay"></div><br>
+                    <div id=></div> 
                     <div class="row">
                         <div class="col-6">
                             <p id="temp"></p>
@@ -81,22 +83,34 @@
                                   <p id="humidity2"></p>
                                 </div>
                               </div>
-                            <div class="card">
-                              <div class="card-body">
-                                <h5 id="dayThreeDate" class="card-title"></h5>
-                                <p class="card-text"></p>
-                              </div>
-                            </div>
+
                             <div class="card">
                                 <div class="card-body">
-                                  <h5 id="dayFourDate" class="card-title"></h5>
+                                  <h5 id="day3" class="card-title"></h5>
                                   <p class="card-text"></p>
+                                  <img id="icon3" src="">
+                                  <p id="temp3"></p>
+                                  <p id="humidity3"></p>
                                 </div>
                               </div>
+
                               <div class="card">
                                 <div class="card-body">
-                                  <h5 id="dayThreeDate" class="card-title"></h5>
+                                  <h5 id="day4" class="card-title"></h5>
                                   <p class="card-text"></p>
+                                  <img id="icon4" src="">
+                                  <p id="temp4"></p>
+                                  <p id="humidity4"></p>
+                                </div>
+                              </div>
+
+                              <div class="card">
+                                <div class="card-body">
+                                  <h5 id="day5" class="card-title"></h5>
+                                  <p class="card-text"></p>
+                                  <img id="icon5" src="">
+                                  <p id="temp5"></p>
+                                  <p id="humidity5"></p>
                                 </div>
                               </div>
                         </div>
@@ -116,9 +130,12 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
+    
+    <!-- Moment JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <!-- JS -->
-    <script src="asssets/keys.js"></script>
-    <script src="asssets/script.js"></script>
+    <script src="assets/keys.js"></script>
+    <script src="assets/script.js"></script>
 </body>
 
 </html>
