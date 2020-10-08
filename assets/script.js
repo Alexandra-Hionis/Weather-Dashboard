@@ -79,8 +79,9 @@ function addCityToStorage(city) {
 function setCurrent () {
     // Display name, temp and humidity
     document.getElementById("nameOfCity").innerText = res.name
+    document.getElementById("currentIcon").src = getCurentIcon(res.weather.icon );
     document.getElementById("temp").innerText = res.main.temp + "\xB0 F"
-    var humidity = document.getElementById("humidity").innerText = res.main.humidity + " %"
+    document.getElementById("humidity").innerText = res.main.humidity + " %"
     document.getElementById("windSpeed").innerText = res.wind.speed + " mph"
 }
 function storeCities() {
@@ -103,6 +104,9 @@ function setForecast() {
     }
   
   } 
+function getCurentIcon(currentIconName) {
+return `https://openweathermap.org/img/wn/${currentIconName}@2x.png`
+}
 
 function getIcon(iconName){
     return `https://openweathermap.org/img/wn/${iconName}@2x.png`
