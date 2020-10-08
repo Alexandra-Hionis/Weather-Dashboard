@@ -6,9 +6,7 @@ body {
 .side-div {
     background-color: lightgray;
 }
-.current-weather {
-    background-color: white;
-}
+
 .searchDiv {
     margin-bottom: 4px;
 }
@@ -17,12 +15,19 @@ body {
     padding: 4px 0 0 3px;
 }
 
+#currentBackground {
+    background-color: peachpuff;
+}
 #header {
     text-align: center;
     color: balck;
 }
 
 .five-day {
+    border: none;
+}
+
+.card {
     border: none;
 }
 

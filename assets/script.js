@@ -4,13 +4,19 @@ var forecastRes
 
 document.getElementById("search").addEventListener("click", searchWeatherByCity);
 
+// Hide background colors
 fiveDayCard.style.display = "none";
+currentBackground.style.display = "none"
 
 
 function searchWeatherByCity() {
     var searchTerm = document.getElementById("searchTerm");
     
+    // Show background colors
     fiveDayCard.style.display = "block";
+    currentBackground.style.display = "block";
+
+
 
     // URL we need to quuery the database
     var queryURL = `https://api.openweathermap.org/data/2.5/weather?q=${searchTerm.value}&appid=${APIKey}&units=imperial`;
@@ -81,7 +87,7 @@ function addCityToStorage(city) {
       container.appendChild(paragraphElement)
     });
   }
-
+  document.getElementById("humidity1").innerText = res.main.humidity + " %";
 function setCurrent () {
     // Display name, temp and humidity
     document.getElementById("nameOfCity").innerText = res.name;
@@ -106,7 +112,7 @@ function setForecast() {
   
         document.getElementById("day" + i).innerText = currentDay.dt_txt;
         document.getElementById("temp" + i).innerText = currentDay.main.temp + "\xB0 F";
-        document.getElementById("hum" + i).innerText = currentDay.main.humidity + " %";
+        // document.getElementById("hum" + i).innerText = currentDay.main.humidity + " %";
         document.getElementById("icon" + i).src = getIcon(currentDay.weather[0].icon);
         
         
